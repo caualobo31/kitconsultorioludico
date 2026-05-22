@@ -1349,7 +1349,7 @@
             <p style="font-size:11px; color:rgba(255,255,255,0.5); margin-top:3px; margin-bottom:6px;">pagamento único &bull; acesso imediato</p>
             <p class="price-savings">Você economiza R$77,00</p>
           </div>
-          <a href="https://ggcheckout.app/checkout/v5/5VkBrlFo5swPZa3sPVaZ" target="_blank" class="btn btn-primary btn-full" id="btn-completo-link">
+          <a href="#" class="btn btn-primary btn-full" id="btn-completo-link">
             Quero o kit completo
           </a>
           <ul class="pricing-items" style="text-align:left; margin-top:20px;">
@@ -1563,20 +1563,18 @@
       precoDesconto:    'R$29,90'
     };
 
-    // ===== UTM PASSTHROUGH =====
-    // Repassa UTMs da URL de entrada para qualquer link de checkout gerado via JS
-    function addUtmsToUrl(url) {
+    // ===== REDIRECIONAMENTO COM PARÂMETROS =====
+    function irParaCheckout(url) {
       try {
-        var src = new URLSearchParams(window.location.search);
         var dest = new URL(url);
-        ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','src','sck','xcod'].forEach(function(k) {
-          var v = src.get(k);
-          // fallback: tenta localStorage (onde Utmify persiste entre páginas)
-          if (!v) { try { v = localStorage.getItem('utmify_' + k); } catch(e) {} }
-          if (v && !dest.searchParams.has(k)) dest.searchParams.set(k, v);
+        var params = new URLSearchParams(window.location.search);
+        params.forEach(function(value, key) {
+          dest.searchParams.set(key, value);
         });
-        return dest.toString();
-      } catch(e) { return url; }
+        window.location.href = dest.toString();
+      } catch(e) {
+        window.location.href = url + window.location.search;
+      }
     }
 
     // ===== POPUP UPSELL =====
@@ -1586,6 +1584,7 @@
       var btnNo    = document.getElementById('upsell-btn-no');
       var btnClose = document.getElementById('upsell-close');
       var trigger  = document.getElementById('btn-basico-trigger');
+      var btnCompletoLink = document.getElementById('btn-completo-link');
 
       // Preenche preços dinamicamente
       document.getElementById('upsell-old-price').textContent = UPSELL.precoOriginal;
@@ -1593,13 +1592,16 @@
       var parts = UPSELL.precoDesconto.replace('R$','').split(',');
       newEl.innerHTML = '<sup>R$</sup>' + parts[0] + (parts[1] ? '<sup>,' + parts[1] + '</sup>' : '');
 
-      // Atualiza link estático do kit completo com UTMs
-      var btnCompletoLink = document.getElementById('btn-completo-link');
-      if (btnCompletoLink) btnCompletoLink.href = addUtmsToUrl(btnCompletoLink.href);
+      // Kit completo (link estático na página)
+      if (btnCompletoLink) {
+        btnCompletoLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          irParaCheckout(UPSELL.checkoutCompleto);
+        });
+      }
 
       function openPopup(e) {
         e.preventDefault();
-        btnYes.href = addUtmsToUrl(UPSELL.checkoutCompleto);
         overlay.classList.add('active');
         document.body.style.overflow = 'hidden';
       }
@@ -1609,15 +1611,14 @@
         document.body.style.overflow = '';
       }
 
+      btnYes.addEventListener('click', function(e) {
+        e.preventDefault();
+        irParaCheckout(UPSELL.checkoutCompleto);
+      });
+
       function goBasico() {
         closePopup();
-        var a = document.createElement('a');
-        a.href = addUtmsToUrl(UPSELL.checkoutBasico);
-        a.target = '_blank';
-        a.rel = 'noopener';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
+        irParaCheckout(UPSELL.checkoutBasico);
       }
 
       if (trigger) trigger.addEventListener('click', openPopup);
