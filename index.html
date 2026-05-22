@@ -1349,7 +1349,7 @@
             <p style="font-size:11px; color:rgba(255,255,255,0.5); margin-top:3px; margin-bottom:6px;">pagamento único &bull; acesso imediato</p>
             <p class="price-savings">Você economiza R$77,00</p>
           </div>
-          <a href="https://ggcheckout.app/checkout/v5/5VkBrlFo5swPZa3sPVaZ" target="_blank" class="btn btn-primary btn-full">
+          <a href="https://ggcheckout.app/checkout/v5/5VkBrlFo5swPZa3sPVaZ" target="_blank" class="btn btn-primary btn-full" id="btn-completo-link">
             Quero o kit completo
           </a>
           <ul class="pricing-items" style="text-align:left; margin-top:20px;">
@@ -1593,6 +1593,10 @@
       var parts = UPSELL.precoDesconto.replace('R$','').split(',');
       newEl.innerHTML = '<sup>R$</sup>' + parts[0] + (parts[1] ? '<sup>,' + parts[1] + '</sup>' : '');
 
+      // Atualiza link estático do kit completo com UTMs
+      var btnCompletoLink = document.getElementById('btn-completo-link');
+      if (btnCompletoLink) btnCompletoLink.href = addUtmsToUrl(btnCompletoLink.href);
+
       function openPopup(e) {
         e.preventDefault();
         btnYes.href = addUtmsToUrl(UPSELL.checkoutCompleto);
@@ -1607,7 +1611,13 @@
 
       function goBasico() {
         closePopup();
-        window.open(addUtmsToUrl(UPSELL.checkoutBasico), '_blank');
+        var a = document.createElement('a');
+        a.href = addUtmsToUrl(UPSELL.checkoutBasico);
+        a.target = '_blank';
+        a.rel = 'noopener';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
       }
 
       if (trigger) trigger.addEventListener('click', openPopup);
