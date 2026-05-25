@@ -1349,7 +1349,7 @@
             <p style="font-size:11px; color:rgba(255,255,255,0.5); margin-top:3px; margin-bottom:6px;">pagamento único &bull; acesso imediato</p>
             <p class="price-savings">Você economiza R$77,00</p>
           </div>
-          <a href="#" class="btn btn-primary btn-full" id="btn-completo-link">
+          <a href="https://ggcheckout.app/checkout/v5/5VkBrlFo5swPZa3sPVaZ" target="_blank" class="btn btn-primary btn-full" id="btn-completo-link">
             Quero o kit completo
           </a>
           <ul class="pricing-items" style="text-align:left; margin-top:20px;">
@@ -1563,18 +1563,16 @@
       precoDesconto:    'R$29,90'
     };
 
-    // ===== REDIRECIONAMENTO COM PARÂMETROS =====
-    function irParaCheckout(url) {
+    // ===== PASSTHROUGH DE PARÂMETROS =====
+    // Injeta todos os parâmetros da URL atual no href de um link
+    function aplicarParams(url) {
       try {
         var dest = new URL(url);
-        var params = new URLSearchParams(window.location.search);
-        params.forEach(function(value, key) {
-          dest.searchParams.set(key, value);
+        new URLSearchParams(window.location.search).forEach(function(v, k) {
+          dest.searchParams.set(k, v);
         });
-        window.location.href = dest.toString();
-      } catch(e) {
-        window.location.href = url + window.location.search;
-      }
+        return dest.toString();
+      } catch(e) { return url + window.location.search; }
     }
 
     // ===== POPUP UPSELL =====
@@ -1592,16 +1590,13 @@
       var parts = UPSELL.precoDesconto.replace('R$','').split(',');
       newEl.innerHTML = '<sup>R$</sup>' + parts[0] + (parts[1] ? '<sup>,' + parts[1] + '</sup>' : '');
 
-      // Kit completo (link estático na página)
-      if (btnCompletoLink) {
-        btnCompletoLink.addEventListener('click', function(e) {
-          e.preventDefault();
-          irParaCheckout(UPSELL.checkoutCompleto);
-        });
-      }
+      // Atualiza hrefs com parâmetros da URL ao carregar a página
+      if (btnCompletoLink) btnCompletoLink.href = aplicarParams(btnCompletoLink.href);
 
       function openPopup(e) {
         e.preventDefault();
+        // Atualiza href do botão de confirmação do popup com os parâmetros atuais
+        btnYes.href = aplicarParams(UPSELL.checkoutCompleto);
         overlay.classList.add('active');
         document.body.style.overflow = 'hidden';
       }
@@ -1611,14 +1606,15 @@
         document.body.style.overflow = '';
       }
 
-      btnYes.addEventListener('click', function(e) {
-        e.preventDefault();
-        irParaCheckout(UPSELL.checkoutCompleto);
-      });
-
       function goBasico() {
         closePopup();
-        irParaCheckout(UPSELL.checkoutBasico);
+        // Cria link temporário para o pixel interceptar o clique normalmente
+        var a = document.createElement('a');
+        a.href = aplicarParams(UPSELL.checkoutBasico);
+        a.target = '_blank';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
       }
 
       if (trigger) trigger.addEventListener('click', openPopup);
