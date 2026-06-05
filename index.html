@@ -1563,16 +1563,17 @@
       precoDesconto:    'R$29,90'
     };
 
-    // ===== PASSTHROUGH DE PARÂMETROS =====
-    // Injeta todos os parâmetros da URL atual no href de um link
-    function aplicarParams(url) {
+    // ===== REDIRECIONAMENTO COM PARÂMETROS =====
+    function irParaCheckout(url) {
       try {
         var dest = new URL(url);
         new URLSearchParams(window.location.search).forEach(function(v, k) {
           dest.searchParams.set(k, v);
         });
-        return dest.toString();
-      } catch(e) { return url + window.location.search; }
+        window.location.href = dest.toString();
+      } catch(e) {
+        window.location.href = url + window.location.search;
+      }
     }
 
     // ===== POPUP UPSELL =====
@@ -1590,13 +1591,15 @@
       var parts = UPSELL.precoDesconto.replace('R$','').split(',');
       newEl.innerHTML = '<sup>R$</sup>' + parts[0] + (parts[1] ? '<sup>,' + parts[1] + '</sup>' : '');
 
-      // Atualiza hrefs com parâmetros da URL ao carregar a página
-      if (btnCompletoLink) btnCompletoLink.href = aplicarParams(btnCompletoLink.href);
+      if (btnCompletoLink) {
+        btnCompletoLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          irParaCheckout(UPSELL.checkoutCompleto);
+        });
+      }
 
       function openPopup(e) {
         e.preventDefault();
-        // Atualiza href do botão de confirmação do popup com os parâmetros atuais
-        btnYes.href = aplicarParams(UPSELL.checkoutCompleto);
         overlay.classList.add('active');
         document.body.style.overflow = 'hidden';
       }
@@ -1606,15 +1609,14 @@
         document.body.style.overflow = '';
       }
 
+      btnYes.addEventListener('click', function(e) {
+        e.preventDefault();
+        irParaCheckout(UPSELL.checkoutCompleto);
+      });
+
       function goBasico() {
         closePopup();
-        // Cria link temporário para o pixel interceptar o clique normalmente
-        var a = document.createElement('a');
-        a.href = aplicarParams(UPSELL.checkoutBasico);
-        a.target = '_blank';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
+        irParaCheckout(UPSELL.checkoutBasico);
       }
 
       if (trigger) trigger.addEventListener('click', openPopup);
