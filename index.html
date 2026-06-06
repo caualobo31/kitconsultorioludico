@@ -1557,6 +1557,7 @@
 
     // ===== CONFIG DO POPUP UPSELL =====
     var UPSELL = {
+      checkoutPagina:   'https://pay.wiapy.com/u8Lr8FTWrd',
       checkoutCompleto: 'https://pay.wiapy.com/Dc-HpAeSV',
       checkoutBasico:   'https://pay.wiapy.com/jAOcPoRUye',
       precoOriginal:    'R$37,90',
@@ -1594,7 +1595,7 @@
       if (btnCompletoLink) {
         btnCompletoLink.addEventListener('click', function(e) {
           e.preventDefault();
-          irParaCheckout(UPSELL.checkoutCompleto);
+          irParaCheckout(UPSELL.checkoutPagina);
         });
       }
 
