@@ -916,9 +916,10 @@
     }
     .upsell-price-block {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 12px;
+      gap: 4px;
       margin-bottom: 22px;
     }
     .upsell-price-old {
@@ -927,11 +928,13 @@
       text-decoration: line-through;
       font-weight: 500;
       opacity: 0.8;
+      text-align: center;
     }
     .upsell-price-new {
       font-size: 44px;
       font-weight: 900;
       color: var(--teal-dark);
+      text-align: center;
     }
     .upsell-price-new sup { font-size: 18px; font-weight: 700; vertical-align: super; }
     .upsell-price-label {
@@ -939,6 +942,12 @@
       color: var(--muted);
       margin-bottom: 20px;
       margin-top: -14px;
+      text-align: center;
+    }
+    @keyframes pulse-upsell {
+      0%   { box-shadow: 0 4px 16px rgba(42,157,143,.35), 0 0 0 0 rgba(42,157,143,.4); }
+      70%  { box-shadow: 0 4px 16px rgba(42,157,143,.35), 0 0 0 10px rgba(42,157,143,0); }
+      100% { box-shadow: 0 4px 16px rgba(42,157,143,.35), 0 0 0 0 rgba(42,157,143,0); }
     }
     .upsell-btn-yes {
       display: block;
@@ -948,19 +957,21 @@
       color: #fff;
       border: none;
       border-radius: 50px;
-      font-family: 'Poppins', sans-serif; 
+      font-family: 'Poppins', sans-serif;
       font-size: 15px;
       font-weight: 700;
       cursor: pointer;
       text-decoration: none;
       margin-bottom: 12px;
       transition: background .2s, transform .2s, box-shadow .2s;
-      box-shadow: 0 4px 16px rgba(42,157,143,.35);
+      animation: pulse-upsell 2s ease-out infinite;
+      text-align: center;
     }
     .upsell-btn-yes:hover {
       background: var(--teal-dark);
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(42,157,143,.4);
+      animation: none;
     }
     .upsell-btn-no {
       display: block;
@@ -970,12 +981,13 @@
       border: none;
       font-family: 'Poppins', sans-serif;
       font-size: 12px;
-      color: var(--muted);
+      color: var(--red);
       cursor: pointer;
       text-decoration: underline;
       text-underline-offset: 3px;
+      opacity: 0.75;
     }
-    .upsell-btn-no:hover { color: var(--body); }
+    .upsell-btn-no:hover { opacity: 1; }
     @media (max-width: 480px) {
       #upsell-card { padding: 28px 20px 22px; }
       .upsell-headline { font-size: 18px; }
@@ -1530,7 +1542,8 @@
       <span class="upsell-tag">Oferta especial</span>
       <h2 class="upsell-headline" id="upsell-title">Espera! Temos uma oferta exclusiva pra você</h2>
       <p class="upsell-body">Aproveite e leve o <strong>Kit Completo</strong> com os 5 bônus exclusivos por um preço especial. São mais de R$97 em materiais extras por muito menos do que você imagina.</p>
-      <div class="upsell-price-block">
+      <img src="imagens/mockuptudo.webp" alt="Kit Completo" style="width:100%;max-width:220px;height:auto;object-fit:contain;margin:0 auto 16px;display:block;filter:drop-shadow(0 8px 20px rgba(42,157,143,0.25));" loading="lazy" />
+      <div class="upsell-price-block" style="flex-direction:column;gap:4px;">
         <span class="upsell-price-old" id="upsell-old-price"></span>
         <span class="upsell-price-new" id="upsell-new-price"></span>
       </div>
