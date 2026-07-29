@@ -434,19 +434,13 @@
       align-items: flex-start;
       gap: 16px;
     }
-    .bonus-num {
+    .bonus-img {
       flex-shrink: 0;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--teal);
-      color: #fff;
-      font-size: 15px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 2px;
+      width: 80px;
+      height: auto;
+      border-radius: 6px;
+      object-fit: contain;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
     }
     .bonus-body { flex: 1; }
     .bonus-card h4 {
@@ -1204,7 +1198,7 @@
 
       <div class="bonus-grid">
         <div class="bonus-card">
-          <div class="bonus-num">01</div>
+          <img class="bonus-img" src="imagens/bonus fichas.webp" alt="Fichas de Anamnese" loading="lazy" />
           <div class="bonus-body">
             <h4>Fichas de Anamnese Infantil Estruturadas</h4>
             <p>Modelos prontos para a primeira sessão com os pais. Chegue preparada desde o início.</p>
@@ -1212,7 +1206,7 @@
           </div>
         </div>
         <div class="bonus-card">
-          <div class="bonus-num">02</div>
+          <img class="bonus-img" src="imagens/bonus roteiro de devolutica.webp" alt="Roteiro de Devolutiva" loading="lazy" />
           <div class="bonus-body">
             <h4>Roteiro de Devolutiva para Pais</h4>
             <p>Scripts prontos para dar feedback aos pais de forma clara e profissional. Sem travar na hora de falar.</p>
@@ -1220,7 +1214,7 @@
           </div>
         </div>
         <div class="bonus-card">
-          <div class="bonus-num">03</div>
+          <img class="bonus-img" src="imagens/bonus checklist de plan.webp" alt="Checklist de Planejamento" loading="lazy" />
           <div class="bonus-body">
             <h4>Checklist de Planejamento de Sessão</h4>
             <p>Passo a passo para organizar cada sessão antes de começar. Nada de improvisar.</p>
@@ -1228,7 +1222,7 @@
           </div>
         </div>
         <div class="bonus-card">
-          <div class="bonus-num">04</div>
+          <img class="bonus-img" src="imagens/bonus guia do manejo.webp" alt="Guia de Manejo" loading="lazy" />
           <div class="bonus-body">
             <h4>Guia de Manejo com Pais Difíceis</h4>
             <p>Estratégias práticas pra lidar com pais resistentes, cobradores ou ausentes. O que muita psicóloga precisava.</p>
@@ -1236,7 +1230,7 @@
           </div>
         </div>
         <div class="bonus-card" style="grid-column: 1 / -1;">
-          <div class="bonus-num">05</div>
+          <img class="bonus-img" src="imagens/bonus kit de pscicoeducacao.webp" alt="Kit de Psicoeducação" loading="lazy" />
           <div class="bonus-body">
             <h4>Kit de Psicoeducação Visual para Pais</h4>
             <p>Materiais ilustrados para explicar ansiedade, TDAH, regulação emocional. Deixa os pais mais parceiros no processo.</p>
