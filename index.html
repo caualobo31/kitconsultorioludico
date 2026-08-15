@@ -468,12 +468,9 @@
     #pricing { padding: 80px 0; background: var(--bg-alt); }
     .pricing-header { text-align: center; margin-bottom: 8px; }
     .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      max-width: 760px;
+      display: flex;
+      justify-content: center;
       margin: 0 auto 24px;
-      align-items: start;
     }
     .pricing-card {
       background: var(--white);
@@ -486,7 +483,8 @@
       background: linear-gradient(155deg, var(--teal) 0%, var(--teal-dark) 100%);
       border-color: transparent;
       box-shadow: 0 16px 48px rgba(42,157,143,0.35);
-      transform: scale(1.03);
+      max-width: 560px;
+      width: 100%;
     }
     .pricing-badge {
       position: absolute;
@@ -742,8 +740,7 @@
       .bonus-card { gap: 12px; }
       .bonus-num { width: 34px; height: 34px; font-size: 13px; }
       .bonus-grid { grid-template-columns: 1fr; }
-      .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
-      .pricing-card.featured { transform: scale(1); }
+      .pricing-card.featured { max-width: 100%; }
       .guarantee-inner { flex-direction: column; text-align: center; }
 
       /* Só a sub-headline e o texto emocional da hero ficam menores */
@@ -1031,7 +1028,7 @@
         <span class="tag tag-teal">Kit Consultório Lúdico</span>
       </div>
 
-      <p style="font-size:14px; font-weight:600; color:var(--muted); letter-spacing:.02em; margin-bottom:10px;">Gastando com materiais terapêuticos que você quase não usa?</p>
+      <p style="font-size:14px; font-weight:600; color:var(--muted); letter-spacing:.02em; margin-bottom:10px;">Sua biblioteca terapêutica infantil completa, num só lugar.</p>
 
       <h1>
         <span>+160 recursos</span> terapêuticos para você aplicar em<span> qualquer sessão infantil</span>
@@ -1119,6 +1116,18 @@
       <a href="#value-stack" class="btn btn-primary btn-center">
         Quero ter acesso agora
       </a>
+    </div>
+  </section>
+
+  <!-- ===== SEÇÃO: BIBLIOTECA (GIF) ===== -->
+  <section id="biblioteca" class="section-white" style="padding:72px 0;">
+    <div class="container" style="text-align:center;">
+      <h2 class="section-headline">Sua biblioteca terapêutica pessoal</h2>
+      <p class="section-sub">Filtre por demanda, visualize o recurso e imprima. Tudo organizado pra você encontrar o material certo em segundos.</p>
+      <div style="max-width:700px;margin:36px auto 0;border:2.5px dashed var(--teal);border-radius:14px;padding:60px 20px;background:var(--teal-light);box-shadow:0 8px 32px rgba(42,157,143,0.08);">
+        <p style="font-size:15px;font-weight:700;color:var(--teal-dark);margin:0;">GIF DA ÁREA DE MEMBROS</p>
+        <p style="font-size:13px;color:var(--muted);margin-top:6px;">Substitua este bloco por uma tag &lt;img&gt; ou &lt;video autoplay loop muted playsinline&gt;</p>
+      </div>
     </div>
   </section>
 
@@ -1334,71 +1343,44 @@
     <div class="container">
       <div class="pricing-header">
         <span class="tag" id="countdown-tag" style="margin-bottom:12px; display:inline-block; background:#FDCB6E; color:#7A5700; letter-spacing:.08em;">OFERTA VÁLIDA ATÉ: <span id="countdown-timer">00:00:00</span></span>
-        <h2 class="section-headline" style="margin-bottom:8px;">Escolha seu kit</h2>
-        <p class="section-sub" style="margin-bottom:36px;">Os dois kits dão acesso imediato. A diferença está em o quanto você quer resolver de uma vez.</p>
+        <h2 class="section-headline" style="margin-bottom:8px;">Acesse o kit completo</h2>
+        <p class="section-sub" style="margin-bottom:36px;">Tudo o que você precisa para atender crianças com segurança e criatividade, num único acesso.</p>
       </div>
 
       <div class="pricing-grid">
-        <!-- KIT BÁSICO -->
-        <div class="pricing-card" style="text-align:center;">
-          <p class="plan-name">Kit Básico</p>
-          <img src="imagens/mockup basico.webp" alt="Kit Básico" class="pricing-mock" loading="lazy" width="840" height="560" />
-          <div class="price-block">
-            <p class="price-old">De R$47,90</p>
-            <p class="price-main"><sup>R$</sup>19<sup>,90</sup></p>
-            <p class="price-installments">Pagamento único</p>
-          </div>
-          <button id="btn-basico-trigger" class="btn btn-primary btn-full" style="background: var(--muted); cursor:pointer; border:none; font-family:'Poppins',sans-serif; font-size:inherit;">
-            Quero o kit básico
-          </button>
-          <ul class="pricing-items" style="text-align:left; margin-top:20px;">
-            <li><i data-lucide="check-circle-2"></i> +80 recursos terapêuticos lúdicos</li>
-            <li><i data-lucide="check-circle-2"></i> Organizados por demanda clínica</li>
-            <li><i data-lucide="check-circle-2"></i> Acesso imediato em PDF</li>
-          </ul>
-          <div class="basic-nudge">
-            <span>92% escolhem o kit completo — +160 recursos e +5 bônus exclusivos</span>
-            <i data-lucide="chevron-down"></i>
-          </div>
-        </div>
-
-        <!-- KIT COMPLETO -->
+        <!-- KIT COMPLETO (único) -->
         <div class="pricing-card featured" style="text-align:center;">
-          <div class="pricing-badge">MAIS VENDIDO</div>
-          <p class="plan-name">Kit Completo</p>
-          <p style="font-size:12px; font-weight:700; background:var(--gold); color:#7A5700; display:inline-block; padding:3px 12px; border-radius:50px; margin-bottom:14px; letter-spacing:.04em;">+160 RECURSOS INCLUSOS</p>
-          <img src="imagens/mockuptudo.webp" alt="Kit Completo" class="pricing-mock" loading="lazy" width="840" height="560" />
-          <div class="price-block">
-            <p style="font-size:13px; font-weight:600; color:rgba(255,255,255,0.8); margin-bottom:8px; line-height:1.3;">O kit completo para transformar suas sessões</p>
-            <p class="price-old">De R$114,90</p>
-            <p class="price-main"><sup>R$</sup>37<sup>,90</sup></p>
-            <p style="font-size:14px; font-weight:400; color:rgba(255,255,255,0.65); margin-top:4px;">Ou 6x de R$ 7,45</p>
-            <p style="font-size:11px; color:rgba(255,255,255,0.5); margin-top:3px; margin-bottom:6px;">pagamento único &bull; acesso imediato</p>
-            <p class="price-savings">Você economiza R$77,00</p>
-          </div>
-          <a href="https://pay.wiapy.com/u8Lr8FTWrd" target="_blank" class="btn btn-primary btn-full btn-checkout" id="btn-completo-link">
-            Quero o kit completo
-          </a>
-          <ul class="pricing-items" style="text-align:left; margin-top:20px;">
+          <div style="background:rgba(255,255,255,0.18);color:#fff;font-size:11px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;display:inline-block;padding:5px 18px;border-radius:50px;margin-bottom:18px;">ACESSO COMPLETO</div>
+          <p class="plan-name" style="font-size:20px;font-weight:800;letter-spacing:normal;text-transform:none;color:#fff;margin-bottom:6px;">Kit Consultório Lúdico</p>
+          <p style="font-size:13px;color:rgba(255,255,255,0.75);margin-bottom:20px;line-height:1.4;">Sua biblioteca terapêutica infantil com +160 recursos + 5 bônus exclusivos</p>
+          <img src="imagens/mockuptudo.webp" alt="Kit Consultório Lúdico" class="pricing-mock" loading="lazy" width="840" height="560" />
+          <ul class="pricing-items" style="text-align:left; margin-top:20px; margin-bottom:20px;">
             <li><i data-lucide="check-circle-2"></i> +160 recursos terapêuticos lúdicos</li>
             <li><i data-lucide="check-circle-2"></i> Organizados por demanda clínica</li>
-            <li><i data-lucide="check-circle-2"></i> Acesso imediato em PDF</li>
+            <li><i data-lucide="check-circle-2"></i> Biblioteca digital com busca e filtros</li>
             <li class="bonus-item"><i data-lucide="gift"></i> Fichas de Anamnese Infantil<span class="bonus-tag">R$27,00</span></li>
             <li class="bonus-item"><i data-lucide="gift"></i> Roteiro de Devolutiva para Pais<span class="bonus-tag">R$19,00</span></li>
             <li class="bonus-item"><i data-lucide="gift"></i> Checklist de Planejamento de Sessão<span class="bonus-tag">R$17,00</span></li>
             <li class="bonus-item"><i data-lucide="gift"></i> Guia de Manejo com Pais Difíceis<span class="bonus-tag">R$17,00</span></li>
             <li class="bonus-item"><i data-lucide="gift"></i> Kit de Psicoeducação Visual<span class="bonus-tag">R$17,00</span></li>
+            <li><i data-lucide="check-circle-2"></i> Acesso vitalício + atualizações futuras</li>
           </ul>
+          <div class="price-block">
+            <p class="price-old">De R$114,90</p>
+            <p class="price-main"><sup>R$</sup>37<sup>,90</sup></p>
+            <p style="font-size:14px;font-weight:400;color:rgba(255,255,255,0.65);margin-top:4px;">ou 6x de R$7,45</p>
+            <p class="price-savings">Você economiza R$77,00</p>
+          </div>
+          <a href="https://pay.wiapy.com/u8Lr8FTWrd" target="_blank" class="btn btn-primary btn-full btn-checkout" id="btn-completo-link">
+            Quero acessar o kit completo
+          </a>
+          <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:14px;margin-bottom:8px;">
+            <span style="display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(255,255,255,0.7);font-weight:500;"><i data-lucide="shield-check" style="width:13px;height:13px;flex-shrink:0;"></i> Pagamento seguro</span>
+            <span style="display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(255,255,255,0.7);font-weight:500;"><i data-lucide="rotate-ccw" style="width:13px;height:13px;flex-shrink:0;"></i> Garantia 15 dias</span>
+            <span style="display:flex;align-items:center;gap:5px;font-size:11px;color:rgba(255,255,255,0.7);font-weight:500;"><i data-lucide="zap" style="width:13px;height:13px;flex-shrink:0;"></i> Acesso imediato</span>
+          </div>
+          <p style="font-size:12px;color:rgba(255,255,255,0.55);margin-top:12px;line-height:1.5;">Menos de R$40 pra nunca mais entrar na sessão sem saber o que aplicar.</p>
         </div>
-      </div>
-
-      <p class="pricing-social">A maioria das psicólogas que compra escolhe o kit completo. Os bônus resolvem exatamente o que o dia a dia clínico exige.</p>
-
-      <div class="payment-seals">
-        <div class="payment-seal"><i data-lucide="credit-card"></i> Cartão de crédito</div>
-        <div class="payment-seal"><i data-lucide="qr-code"></i> Pix</div>
-        <div class="payment-seal"><i data-lucide="file-text"></i> Boleto</div>
-        <div class="payment-seal"><i data-lucide="shield-check"></i> Compra 100% segura</div>
       </div>
     </div>
   </section>
@@ -1556,43 +1538,13 @@
     </p>
   </footer>
 
-  <!-- ===== POPUP UPSELL ===== -->
-  <div id="upsell-overlay" role="dialog" aria-modal="true" aria-labelledby="upsell-title">
-    <div id="upsell-card">
-      <button id="upsell-close" aria-label="Fechar">&#x2715;</button>
-      <span class="upsell-tag">Oferta especial</span>
-      <h2 class="upsell-headline" id="upsell-title">Espera! Temos uma oferta exclusiva pra você</h2>
-      <p class="upsell-body">Aproveite e leve o <strong>Kit Completo</strong> com os 5 bônus exclusivos por um preço especial. São mais de R$97 em materiais extras por muito menos do que você imagina.</p>
-      <img src="imagens/mockuptudo.webp" alt="Kit Completo" style="width:100%;max-width:220px;height:auto;object-fit:contain;margin:0 auto 16px;display:block;filter:drop-shadow(0 8px 20px rgba(42,157,143,0.25));" loading="lazy" />
-      <div class="upsell-price-block" style="flex-direction:column;gap:4px;">
-        <span class="upsell-price-old" id="upsell-old-price"></span>
-        <span class="upsell-price-new" id="upsell-new-price"></span>
-      </div>
-      <p class="upsell-price-label">Pagamento único. Acesso imediato.</p>
-      <a id="upsell-btn-yes" class="upsell-btn-yes btn-checkout" target="_blank">
-        Quero o kit completo com desconto
-      </a>
-      <button id="upsell-btn-no" class="upsell-btn-no btn-checkout">
-        Não, quero apenas o kit básico
-      </button>
-    </div>
-  </div>
-
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>
     // Inicializar ícones Lucide
     lucide.createIcons();
 
-    // ===== CONFIG DO POPUP UPSELL =====
-    var UPSELL = {
-      checkoutPagina:   'https://pay.wiapy.com/u8Lr8FTWrd',
-      checkoutCompleto: 'https://pay.wiapy.com/Dc-HpAeSV',
-      checkoutBasico:   'https://pay.wiapy.com/jAOcPoRUye',
-      precoOriginal:    'R$37,90',
-      precoDesconto:    'R$29,90'
-    };
+    var CHECKOUT_COMPLETO = 'https://pay.wiapy.com/u8Lr8FTWrd';
 
-    // ===== REDIRECIONAMENTO COM PARÂMETROS =====
     function playVSL() {
       var thumb = document.getElementById('vsl-thumb');
       var iframe = document.getElementById('vsl-iframe');
@@ -1613,62 +1565,15 @@
       }
     }
 
-    // ===== POPUP UPSELL =====
+    // ===== CHECKOUT =====
     (function() {
-      var overlay  = document.getElementById('upsell-overlay');
-      var btnYes   = document.getElementById('upsell-btn-yes');
-      var btnNo    = document.getElementById('upsell-btn-no');
-      var btnClose = document.getElementById('upsell-close');
-      var trigger  = document.getElementById('btn-basico-trigger');
       var btnCompletoLink = document.getElementById('btn-completo-link');
-
-      // Preenche preços dinamicamente
-      document.getElementById('upsell-old-price').textContent = UPSELL.precoOriginal;
-      var newEl = document.getElementById('upsell-new-price');
-      var parts = UPSELL.precoDesconto.replace('R$','').split(',');
-      newEl.innerHTML = '<sup>R$</sup>' + parts[0] + (parts[1] ? '<sup>,' + parts[1] + '</sup>' : '');
-
       if (btnCompletoLink) {
         btnCompletoLink.addEventListener('click', function(e) {
           e.preventDefault();
-          irParaCheckout(UPSELL.checkoutPagina);
+          irParaCheckout(CHECKOUT_COMPLETO);
         });
       }
-
-      function openPopup(e) {
-        e.preventDefault();
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closePopup() {
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-
-      btnYes.addEventListener('click', function(e) {
-        e.preventDefault();
-        irParaCheckout(UPSELL.checkoutCompleto);
-      });
-
-      function goBasico() {
-        closePopup();
-        irParaCheckout(UPSELL.checkoutBasico);
-      }
-
-      if (trigger) trigger.addEventListener('click', openPopup);
-      btnClose.addEventListener('click', closePopup);
-      btnNo.addEventListener('click', goBasico);
-
-      // Fechar clicando fora do card
-      overlay.addEventListener('click', function(e) {
-        if (e.target === overlay) closePopup();
-      });
-
-      // Fechar com ESC
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closePopup();
-      });
     })();
 
     // ===== Carrossel de Depoimentos =====
