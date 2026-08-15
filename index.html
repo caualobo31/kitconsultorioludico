@@ -1124,9 +1124,15 @@
     <div class="container" style="text-align:center;">
       <h2 class="section-headline">Sua biblioteca terapêutica pessoal</h2>
       <p class="section-sub">Filtre por demanda, visualize o recurso e imprima. Tudo organizado pra você encontrar o material certo em segundos.</p>
-      <div style="max-width:700px;margin:36px auto 0;border-radius:14px;overflow:hidden;box-shadow:0 8px 32px rgba(42,157,143,0.12);">
+      <div style="max-width:700px;margin:36px auto 0;border-radius:14px;overflow:hidden;box-shadow:0 8px 32px rgba(42,157,143,0.12);position:relative;">
+        <div id="gif-thumb" onclick="playGif()" style="position:absolute;top:0;left:0;width:100%;height:100%;cursor:pointer;z-index:10;">
+          <img src="imagens/thumbgif.webp" alt="Ver demonstração" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:68px;height:68px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 10px rgba(255,255,255,0.25);animation:pulse-play 2s ease-out infinite;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="#2A9D8F"><polygon points="6,3 20,12 6,21"/></svg>
+          </div>
+        </div>
         <div style="padding:177.78% 0 0 0;position:relative;">
-          <iframe src="https://player.vimeo.com/video/1218502576?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="gif demonstração"></iframe>
+          <iframe id="gif-iframe" src="https://player.vimeo.com/video/1218502576?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="gif demonstração"></iframe>
         </div>
       </div>
     </div>
@@ -1546,6 +1552,14 @@
     lucide.createIcons();
 
     var CHECKOUT_COMPLETO = 'https://pay.wiapy.com/u8Lr8FTWrd';
+
+    function playGif() {
+      var thumb = document.getElementById('gif-thumb');
+      var iframe = document.getElementById('gif-iframe');
+      thumb.style.display = 'none';
+      var player = new Vimeo.Player(iframe);
+      player.play();
+    }
 
     function playVSL() {
       var thumb = document.getElementById('vsl-thumb');
