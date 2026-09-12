@@ -174,7 +174,7 @@
     /* ===================== HERO ===================== */
     #hero {
       background-color: var(--white);
-      padding: 72px 0 60px;
+      padding: 40px 0 52px;
     }
     #hero .container {
       display: flex;
@@ -182,7 +182,7 @@
       align-items: center;
       text-align: center;
     }
-    #hero .hero-tag { margin-bottom: 18px; }
+    #hero .hero-tag { margin-bottom: 14px; }
     #hero h1 {
       font-size: clamp(26px, 5vw, 40px);
       font-weight: 600;
@@ -1028,44 +1028,30 @@
   <section id="hero">
     <div class="container">
       <div class="hero-tag">
-        <span class="tag tag-teal">Kit Consultório Lúdico</span>
+        <span class="tag tag-teal">Para psicólogas que atendem crianças</span>
       </div>
 
-      <p style="font-size:14px; font-weight:600; color:var(--muted); letter-spacing:.02em; margin-bottom:10px;">Sua biblioteca terapêutica infantil completa, num só lugar.</p>
-
-      <h1>
-        <span>+160 recursos</span> terapêuticos para você aplicar em<span> qualquer sessão infantil</span>
-      </h1>
+      <h1>Entre na sessão infantil com o recurso certo na mão</h1>
 
       <p class="hero-sub">
-        Organizados por demanda (ansiedade, TDAH, luto, comportamento). Imprima e aplique.
+        +160 recursos terapêuticos para conduzir atendimentos infantis com mais clareza, repertório e praticidade.
       </p>
 
-      <!-- VSL VIMEO -->
-      <div id="vsl-wrapper" style="width:100%;max-width:320px;margin:0 auto 32px;position:relative;">
-        <div id="vsl-thumb" onclick="playVSL()" style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(170deg,#133d37 0%,#1e6e63 45%,#2A9D8F 100%);border-radius:12px;cursor:pointer;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;">
-          <div style="background:rgba(255,255,255,0.18);border-radius:20px;padding:7px 18px;font-size:12px;color:#fff;font-weight:700;letter-spacing:1px;text-transform:uppercase;">▶ Toque para assistir</div>
-          <div id="vsl-play-btn" style="width:76px;height:76px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="#2A9D8F"><polygon points="6,3 20,12 6,21"/></svg>
-          </div>
-          <p style="color:#fff;font-size:14px;font-weight:600;text-align:center;margin:0;padding:0 24px;line-height:1.5;">Veja como esses recursos vão transformar suas sessões</p>
-        </div>
-        <div style="padding:177.78% 0 0 0;position:relative;">
-          <iframe id="vsl-iframe" src="https://player.vimeo.com/video/1218465819?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;" title="recursos infantis"></iframe>
-        </div>
-      </div>
+      <img src="imagens/mockuptudo.webp" alt="Kit Consultório Lúdico" class="hero-mockup" loading="eager" width="840" height="560" />
 
-      <div class="hero-bullets">
-        <div class="hero-bullet"><i data-lucide="zap"></i> Acesso imediato após a compra</div>
-        <div class="hero-bullet"><i data-lucide="printer"></i> Imprime e usa na mesma sessão</div>
-        <div class="hero-bullet"><i data-lucide="folder-open"></i> Organizado por demanda clínica</div>
-        <div class="hero-bullet"><i data-lucide="layers"></i> +160 recursos prontos pra usar</div>
-        <div class="hero-bullet"><i data-lucide="refresh-cw"></i> Novos recursos todo mês, sem custo extra</div>
+      <div class="hero-bullets" style="gap:6px 10px;">
+        <div class="hero-bullet">Ansiedade</div>
+        <div class="hero-bullet" style="color:var(--muted);">·</div>
+        <div class="hero-bullet">TDAH</div>
+        <div class="hero-bullet" style="color:var(--muted);">·</div>
+        <div class="hero-bullet">Comportamento</div>
+        <div class="hero-bullet" style="color:var(--muted);">·</div>
+        <div class="hero-bullet">Emoções</div>
+        <div class="hero-bullet" style="color:var(--muted);">·</div>
+        <div class="hero-bullet">Luto</div>
+        <div class="hero-bullet" style="color:var(--muted);">·</div>
+        <div class="hero-bullet">TEA</div>
       </div>
-
-      <p class="hero-emotional">
-        Chega de gastar horas procurando material.<br />Você vai ter a ferramenta certa pra cada criança.
-      </p>
 
       <div class="hero-cta-block">
         <a href="#preview" class="btn btn-primary">
