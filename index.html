@@ -1351,7 +1351,7 @@
             <p style="font-size:11px; color:rgba(255,255,255,0.5); margin-top:3px; margin-bottom:6px;">pagamento único &bull; acesso imediato</p>
             <p class="price-savings">Você economiza R$139,00</p>
           </div>
-          <a href="https://app.zuptos.com.br/checkout/a5c19cfa302916cc" target="_blank" class="btn btn-primary btn-full btn-checkout" id="btn-completo-link">
+          <a href="javascript:void(0)" class="btn btn-primary btn-full btn-checkout" id="btn-completo-link">
             Quero o kit completo
           </a>
           <ul class="pricing-items" style="text-align:left; margin-top:20px;">
@@ -1583,14 +1583,15 @@
     }
 
     function irParaCheckout(url) {
+      var params = window.location.search;
       try {
         var dest = new URL(url);
-        new URLSearchParams(window.location.search).forEach(function(v, k) {
+        new URLSearchParams(params).forEach(function(v, k) {
           dest.searchParams.set(k, v);
         });
         window.location.href = dest.toString();
       } catch(e) {
-        window.location.href = url + window.location.search;
+        window.location.href = params ? url + (url.indexOf('?') >= 0 ? '&' : '?') + params.slice(1) : url;
       }
     }
 
