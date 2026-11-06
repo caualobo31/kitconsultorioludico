@@ -1562,20 +1562,30 @@
   <div id="upsell-overlay" role="dialog" aria-modal="true" aria-labelledby="upsell-title">
     <div id="upsell-card">
       <button id="upsell-close" aria-label="Fechar">&#x2715;</button>
-      <span class="upsell-tag">Oferta especial</span>
-      <h2 class="upsell-headline" id="upsell-title">Espera! Temos uma oferta exclusiva pra você</h2>
-      <p class="upsell-body">Aproveite e leve o <strong>Kit Completo</strong> com os 5 bônus exclusivos por um preço especial. São mais de R$97 em materiais extras por muito menos do que você imagina.</p>
-      <img src="imagens/mockuptudo.webp" alt="Kit Completo" style="width:100%;max-width:220px;height:auto;object-fit:contain;margin:0 auto 16px;display:block;filter:drop-shadow(0 8px 20px rgba(42,157,143,0.25));" loading="lazy" />
-      <div class="upsell-price-block" style="flex-direction:column;gap:4px;">
+
+      <!-- Escassez -->
+      <div style="background:#FFF3CD; border:1px solid #FDCB6E; border-radius:8px; padding:8px 14px; margin-bottom:16px; display:flex; align-items:center; gap:8px; justify-content:center;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#7A5700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p style="font-size:12px; font-weight:700; color:#7A5700; margin:0; letter-spacing:.03em;">OFERTA EXCLUSIVA — só aparece uma vez</p>
+      </div>
+
+      <span class="upsell-tag">Espera! Antes de ir embora…</span>
+      <h2 class="upsell-headline" id="upsell-title">Leve o Kit Completo por R$10 a mais</h2>
+      <p class="upsell-body">Você escolheu o Kit Essencial, mas por apenas R$10 a mais você leva também os <strong>5 bônus exclusivos</strong> — fichas de anamnese, roteiro de devolutiva, checklist de sessão, guia de manejo com pais e kit de psicoeducação.</p>
+
+      <img src="imagens/mockuptudo.webp" alt="Kit Completo" style="width:100%;max-width:200px;height:auto;object-fit:contain;margin:0 auto 16px;display:block;filter:drop-shadow(0 8px 24px rgba(42,157,143,0.3));" loading="lazy" />
+
+      <div class="upsell-price-block" style="flex-direction:column; gap:2px;">
         <span class="upsell-price-old" id="upsell-old-price"></span>
         <span class="upsell-price-new" id="upsell-new-price"></span>
       </div>
-      <p class="upsell-price-label">Pagamento único. Acesso imediato.</p>
-      <a id="upsell-btn-yes" class="upsell-btn-yes btn-checkout" target="_blank">
-        Quero o kit completo com desconto
+      <p class="upsell-price-label">Pagamento único &bull; Acesso imediato &bull; Garantia de 15 dias</p>
+
+      <a id="upsell-btn-yes" class="upsell-btn-yes btn-checkout">
+        Sim, quero o kit completo por R$37,90
       </a>
-<button id="upsell-btn-no" class="upsell-btn-no btn-checkout">
-        Continuar sem o desconto
+      <button id="upsell-btn-no" class="upsell-btn-no btn-checkout">
+        Não, prefiro só o kit essencial
       </button>
     </div>
   </div>
@@ -1586,11 +1596,11 @@
     lucide.createIcons();
 
     var UPSELL = {
-      checkoutPagina:   'https://app.zuptos.com.br/checkout/a5c19cfa302916cc',
-      checkoutCompleto: 'https://app.zuptos.com.br/checkout/a5c19cfa302916cc',
-      checkoutEssencial: 'https://app.zuptos.com.br/checkout/17f8862dce3b36fe',
+      checkoutPagina:    'https://pay.wiapy.com/u8Lr8FTWrd',
+      checkoutCompleto:  'https://pay.wiapy.com/Dc-HpAeSV',
+      checkoutEssencial: 'https://pay.wiapy.com/jAOcPoRUye',
       precoOriginal:    'R$47,90',
-      precoDesconto:    'R$27,90'
+      precoDesconto:    'R$37,90'
     };
 
     function playGif() {
@@ -1645,10 +1655,7 @@
 
       var btnEssencialLink = document.getElementById('btn-essencial-link');
       if (btnEssencialLink) {
-        btnEssencialLink.addEventListener('click', function(e) {
-          e.preventDefault();
-          irParaCheckout(UPSELL.checkoutEssencial);
-        });
+        btnEssencialLink.addEventListener('click', openPopup);
       }
 
       function openPopup(e) {
@@ -1669,7 +1676,7 @@
 
       function goBasico() {
         closePopup();
-        irParaCheckout(UPSELL.checkoutBasico);
+        irParaCheckout(UPSELL.checkoutEssencial);
       }
 
       if (trigger) trigger.addEventListener('click', openPopup);
